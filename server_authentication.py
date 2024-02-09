@@ -1,4 +1,3 @@
-#original
 from flask import Flask, jsonify, render_template,session
 import pymysql
 from shared import *
