@@ -1,13 +1,6 @@
 from flask import Flask, render_template, request,session
 import pymysql
 from shared import *
-#app = Flask(__name__)
-obj222=pymysql.connect(host="localhost",user="root",database="woolyweb",password="abcd")
-obj22=pymysql.connect(host="localhost",user="root",database="woolyweb",password="abcd")
-cur22=obj22.cursor()
-cur222=obj222.cursor()
-cur222.execute("select fid from farmers;")
-fid_list_product_description=list(cur222.fetchall())
 @app.route('/product_description',methods=["POST","GET"])
 def product_description():
     if(request.method=="POST"):
@@ -26,8 +19,8 @@ def description_cost():
         description_list.append(fid_list_product_description[-1][0])
         description_list.append(request.form['desc_get'])
         description_list.append(request.form['cost_get'])
-        cur22.execute("Insert into description values"+str(tuple(description_list))+"")
-        obj22.commit()
+        cur222.execute("Insert into description values"+str(tuple(description_list))+"")
+        obj222.commit()
         return redirect('/')#data entered successfully
     if(request.method=="GET"):
         return redirect('/farmer_check')

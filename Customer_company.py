@@ -3,10 +3,6 @@ from flask import Flask,render_template,url_for,request,redirect,session
 import json
 from shared import *
 from en_de import *
-obj2=pymysql.connect(host="localhost",user="root",password="abcd",database="woolyweb")
-cur2=obj2.cursor()
-
-
 @app.route('/customer_company_login',methods=["POST","GET"])
 def ren_customer():
     return render_template("customer company.html")

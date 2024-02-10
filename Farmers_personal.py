@@ -3,19 +3,9 @@ from flask import Flask,render_template,url_for,request,redirect,session
 import json
 from shared import *
 from en_de import*
-#from Customer_company import *
-
-obj3=pymysql.connect(host="localhost",user="root",password="abcd",database="woolyweb")
-cur3=obj3.cursor()
-cur4=obj3.cursor()
-obj4=pymysql.connect(host="localhost",user="root",password="abcd",database="aadhar")
-cur5=obj4.cursor()
-
-#app=Flask(__name__)
 @app.route('/farmer_personal_login',methods=["POST","GET"])
 def ren_farmer():
     return render_template("farmers_personal.html")
-#global var
 x_farmers=["name","age","aadhaar","address","city","state","phone","processing","sheep_type","inventory","No. of sheep","gender","password"]
 
 @app.route("/submit_farmer",methods=["POST","GET"])

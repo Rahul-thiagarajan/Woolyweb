@@ -1,13 +1,8 @@
 import pymysql
-obj11=pymysql.connect(host="localhost",user="root",password="abcd",database="woolyweb")
-cur11=obj11.cursor()
-cur11.execute("select username,password from general_customer;")
-farmers_list=list(cur11.fetchall())
 from flask import Flask,render_template,url_for,request,redirect,session
 import json
 from shared import *
 from en_de import *
-#app=Flask(__name__)
 @app.route('/generalcust_check',methods=["POST","GET"])
 def ren_generalcust_check():
     if "general_customer" in session:
