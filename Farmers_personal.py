@@ -37,7 +37,7 @@ def complete_farmer(a):
             for i in x_farmers:
                 r_farmer.append(a[i])
             if(len(r_farmer[6])!=10):
-                return "SUBMISSION UNSUCCESSFUL..!!<br>PLEASE ENTER A VALID PHONE NUMBER"
+                return "<h1>SUBMISSION UNSUCCESSFUL..!!<br>PLEASE ENTER A VALID PHONE NUMBER</h1>"
             if(cur4.fetchone()==None):
                 r_farmer.append(1)        
             else:
@@ -47,7 +47,7 @@ def complete_farmer(a):
             obj3.commit()
             return render_template("bank details.html")
         else:
-            return "YOUR SUBMISSION IS UNSUCCESSFUL\nPLEASE ENTER A VALID AADHAR"
+            return "<h1>YOUR SUBMISSION IS UNSUCCESSFUL<br>PLEASE ENTER A VALID AADHAR</h1>"
     elif(request.method=="GET"):
         return redirect('/farmer_personal_login')
 
