@@ -37,7 +37,10 @@ def complete_farmer(a):
             cur.execute("Select aadhar_number from farmers;")
             for i in x_farmers:
                 r_farmer.append(a[i])
+            r_farmer[-2]=r_farmer[-2][0]
             r_farmer[7]=r_farmer[7][0]
+            if(not r_farmer[-3].isdigit()):
+                return "<h1>SUBMISSION UNSUCCESSFUL..!!<br>ENTER A VALID NO OF SHEEPS</h1>"
             if(r_farmer[7].lower()!="y" and r_farmer[7].lower()!="n"):
                 return "<h1>SUBMISSION UNSUCCESSFUL..!!<br>ENTER A VALID PROCESSING REQUIREMENT</h1>"
             r_farmer[9]=r_farmer[9][0]

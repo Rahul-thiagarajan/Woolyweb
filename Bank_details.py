@@ -27,17 +27,23 @@ def complete_bank(a):
         print(lst)
         for i in x_bank:
             r_bank.append(a[i])
-        if(lst):
-            r_bank.append(lst[-1][0])
-        else:
-            obj2012=pymysql.connect(host="localhost",user="root",database="woolyweb",password="abcd")
-            cur2012=obj2012.cursor()
-            cur2012.execute("Select fid from farmers;")
-            r_bank.append(cur2012.fetchall()[-1][0])
+        r_bank.append(lst[-1][0])
+        cur2012.execute("select ifsc_code,account_number from account_details;")
+        temp=cur2012.fetchall()
+        if(len(r_bank[1])!=12):
+            return "<h1>REGISTRATION UNSUCCESSFUL..!!<h1><br><h1>INVALID IFSC CODE<h1>"
+        if(not r_bank[2].isdigit()):
+            return "<h1>REGISTRATION UNSUCCESSFUL..!!<h1><br><h1>INVALID ACCOUNT NUMBER<h1>"
+        if(len(r_bank[2])!=15):
+            return "<h1>REGISTRATION UNSUCCESSFUL..!!<h1><br><h1>INVALID ACCOUNT NUMBER<h1>"
+        if(r_bank[1] in [x[0] for x in temp]):
+            return "<h1>REGISTRATION UNSUCCESSFUL..!!<h1><br><h1>THIS IFSC IS ALREADY REGISTERED<h1>"
+        if(r_bank[2] in [y[1] for y in temp]):
+            return "<h1>REGISTRATION UNSUCCESSFUL..!!<h1><br><h1>THIS ACCOUNT NUMBER IS ALREADY REGISTERED<h1>"
         try:
             cur2012.execute("Insert into account_details(bank_name,ifsc_code,account_number,fid) values"+str(tuple(r_bank))+";")
         except Exception as e:
-            return "WEBSITE FAILED TO LOAD PLEASE TRY AGAIN" + e;
+            return "WEBSITE FAILED TO LOAD PLEASE TRY AGAIN" + e
         obj2012.commit()
         return redirect(url_for('photo_upload'),code=307)
     elif(request.method=="GET"):
