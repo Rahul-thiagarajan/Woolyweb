@@ -27,7 +27,7 @@ Session(app)
 CORS(app)
 @app.route('/',methods=["POST","GET"])
 def home0():
-    feed = feedparser.parse('https://agritimes.co.in/feed')
+    feed = feedparser.parse('https://woolnews.net/feed/')
     return render_template('news.html', entries=feed.entries,url='/1')
 @app.route('/1',methods=["POST","GET"])
 def home1():
@@ -53,14 +53,14 @@ def home3():
 @app.route('/re',methods=["POST","GET"])
 def home4():
     if(request.method=="POST"):
-        feed = feedparser.parse('https://agritimes.co.in/feed')
+        feed = feedparser.parse('https://woolnews.net/feed/')
         return render_template('news.html', entries=feed.entries,url='/re2')
     elif(request.method=="GET"):
         return redirect('/')  
 @app.route('/re2',methods=["POST","GET"])
 def home5():
     if(request.method=="POST"):
-        feed = feedparser.parse('https://agritimes.co.in/feed')
+        feed = feedparser.parse('https://woolnews.net/feed/')
         return render_template('news.html', entries=feed.entries,url='/')
     elif(request.method=="GET"):
         return redirect('/') 
@@ -72,12 +72,11 @@ def type_of_login():
     return render_template("typeoflogin.html")
 @app.route('/education',methods=["POST","GET"])
 def education():
-    feed = feedparser.parse('https://agritimes.co.in/feed')
+    feed = feedparser.parse('https://woolnews.net/feed/')
     return render_template('news.html', entries='/education',url='/')
 @app.route('/logout',methods=["POST","GET"])
 def logout():
     session.clear()
     return redirect('/')
-        
 if __name__ == '__main__':
     app.run(debug=True)

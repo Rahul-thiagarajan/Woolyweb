@@ -7,13 +7,6 @@ from en_de import *#my module
 import os
 import pymysql
 from shared import *
-
-conn21=pymysql.connect(host="localhost",user="root",password="abcd",database="woolyweb")
-conn201=pymysql.connect(host="localhost",user="root",password="abcd",database="woolyweb")
-cur21=conn21.cursor()
-cu201=conn201.cursor()
-cu201.execute("select fid from farmers;")
-lst=list(cu201.fetchall())
 temp_photo_upload=''
 x_upload=['description','price']
 #app = Flask(__name__)

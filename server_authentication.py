@@ -34,10 +34,7 @@ def get_price():
     return "SUCCESSFULLY UPDATED THE PRICES"
 @app.route('/verify', methods=['POST'])
 def verify():
-    
-    # Assuming you want to record the response data when the "Verify" button is clicked
     data = request.get_json()
-    
     print(f"update farmers set verification='y' where fid={int(data['fid'])};")
     cur13.execute(f"update farmers set verification='y' where fid={int(data['fid'])};")
     obj13.commit()

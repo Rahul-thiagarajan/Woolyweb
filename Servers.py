@@ -3,10 +3,6 @@ from en_de import *
 from flask import Flask,render_template,url_for,request,redirect,session
 import json
 from shared import *
-obj8=pymysql.connect(host="localhost",user="root",password="abcd",database="servers")
-cur8=obj8.cursor()
-cur8.execute("select * from servers_list;")
-servers=list(cur8.fetchall())
 
 #app=Flask(__name__)
 @app.route('/servers_login',methods=["POST","GET"])
@@ -28,6 +24,10 @@ r_server=[]
 @app.route("/complete_server/<a>",methods=["POST","GET"])
 def complete_server(a):
     if(request.method=="POST"):
+        obj8=pymysql.connect(host="localhost",user="root",password="abcd",database="servers")
+        cur8=obj8.cursor()
+        cur8.execute("select * from servers_list;")
+        servers=list(cur8.fetchall())
         r_server.clear()
         a=decrypt(a)
         a=json.loads(a)

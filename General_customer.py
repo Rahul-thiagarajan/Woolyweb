@@ -3,8 +3,6 @@ from flask import Flask,render_template,url_for,request,redirect,session
 import json
 from shared import *
 from en_de import *
-obj6=pymysql.connect(host="localhost",user="root",password="abcd",database="woolyweb")
-cur6=obj6.cursor()
 
 #app=Flask(__name__)
 #@app.route('/')
