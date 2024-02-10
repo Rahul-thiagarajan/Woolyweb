@@ -7,7 +7,6 @@ from en_de import*
 def ren_farmer():
     return render_template("farmers_personal.html")
 x_farmers=["name","age","aadhaar","address","city","state","phone","processing","sheep_type","inventory","No. of sheep","gender","password"]
-
 @app.route("/submit_farmer",methods=["POST","GET"])
 def submit_farmer():
     if(request.method=="POST"):
@@ -29,13 +28,25 @@ def complete_farmer(a):
         cur4=obj3.cursor()
         obj4=pymysql.connect(host="localhost",user="root",password="abcd",database="aadhar")
         cur5=obj4.cursor()
+        cur=obj3.cursor()
         cur4.execute("select * from farmers;")
         cur5.execute("select aadhar_numbers from verified_aadhar")
         a=decrypt(a)
         a=json.loads(a)
         if(str(a['aadhaar']) in [z[0] for z in cur5.fetchall()]):
+            cur.execute("Select aadhar_number from farmers;")
             for i in x_farmers:
                 r_farmer.append(a[i])
+            r_farmer[7]=r_farmer[7][0]
+            if(r_farmer[7].lower()!="y" and r_farmer[7].lower()!="n"):
+                return "<h1>SUBMISSION UNSUCCESSFUL..!!<br>ENTER A VALID PROCESSING REQUIREMENT</h1>"
+            r_farmer[9]=r_farmer[9][0]
+            if(r_farmer[9].lower()!="y" and r_farmer[9].lower()!="n"):
+                return "<h1>SUBMISSION UNSUCCESSFUL..!!<br>ENTER A VALID INVENTORY REQUIREMENT</h1>"
+            temp=cur.fetchall()
+            print(temp)
+            if(r_farmer[2] in [x[0] for x in temp]):
+                return "<h1>SUBMISSION UNSUCCESSFUL..!!<br>THIS AADHAR NUMBER IS ALREADY REGISTERED</h1>"
             if(len(r_farmer[6])!=10):
                 return "<h1>SUBMISSION UNSUCCESSFUL..!!<br>PLEASE ENTER A VALID PHONE NUMBER</h1>"
             if(cur4.fetchone()==None):
