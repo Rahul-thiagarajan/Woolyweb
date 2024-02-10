@@ -20,7 +20,7 @@ r_farmer_check=[]
 @app.route("/complete_farmer_check/<a>",methods=["POST","GET"])
 def complete_farmer_check(a):
     if(request.method=="POST"):
-        obj10=pymysql.connect(host="localhost",user="root",password="abcd",database="woolyweb")
+        obj10=pymysql.connect(host="localhost",user="root",password="2theeran7",database="woolyweb")
         cur10=obj10.cursor()
         cur10.execute("select fid,password from farmers;")
         farmers_list=list(cur10.fetchall())

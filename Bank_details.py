@@ -18,7 +18,7 @@ r_bank=[]
 def complete_bank(a):
     if (request.method=="POST"):
         lst=[]
-        obj2012=pymysql.connect(host="localhost",user="root",database="woolyweb",password="abcd")
+        obj2012=pymysql.connect(host="localhost",user="root",database="woolyweb",password="2theeran7")
         cur2012=obj2012.cursor()
         cur2012.execute("Select fid from farmers;")
         lst=list(cur2012.fetchall())
@@ -30,6 +30,7 @@ def complete_bank(a):
         r_bank.append(lst[-1][0])
         cur2012.execute("select ifsc_code,account_number from account_details;")
         temp=cur2012.fetchall()
+        
         if(len(r_bank[1])!=12):
             return "<h1>REGISTRATION UNSUCCESSFUL..!!<h1><br><h1>INVALID IFSC CODE<h1>"
         if(not r_bank[2].isdigit()):

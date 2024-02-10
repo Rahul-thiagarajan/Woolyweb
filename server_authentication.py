@@ -4,7 +4,7 @@ from shared import *
 import pymysql
 
 list_min_max=[0,0]
-obj13=pymysql.connect(host="localhost",user="root",password="abcd",database="woolyweb")
+obj13=pymysql.connect(host="localhost",user="root",password="2theeran7",database="woolyweb")
 cur13=obj13.cursor()
 #app = Flask(__name__)
 farmers=[]
@@ -18,7 +18,7 @@ def server_authentication():
 def get_data():
     print(list_min_max)
     farmers.clear()
-    obj13=pymysql.connect(host="localhost",user="root",password="abcd",database="woolyweb")
+    obj13=pymysql.connect(host="localhost",user="root",password="2theeran7",database="woolyweb")
     cur13=obj13.cursor()
     cur13.execute("select fid,fname,age,no_of_sheeps,type_of_sheep,address,city,state from farmers where verification='n';")
     list_of_farmers_server_authentication=cur13.fetchall()

@@ -23,10 +23,10 @@ r_farmer=[]
 def complete_farmer(a):
     if(request.method=="POST"):
         r_farmer.clear()
-        obj3=pymysql.connect(host="localhost",user="root",password="abcd",database="woolyweb")
+        obj3=pymysql.connect(host="localhost",user="root",password="2theeran7",database="woolyweb")
         cur3=obj3.cursor()
         cur4=obj3.cursor()
-        obj4=pymysql.connect(host="localhost",user="root",password="abcd",database="aadhar")
+        obj4=pymysql.connect(host="localhost",user="root",password="2theeran7",database="aadhar")
         cur5=obj4.cursor()
         cur=obj3.cursor()
         cur4.execute("select * from farmers;")

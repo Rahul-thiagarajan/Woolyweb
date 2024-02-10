@@ -13,7 +13,7 @@ def description_cost():
     if request.method == "POST":
         description_list=[]
         description_list.clear()
-        obj222=pymysql.connect(host="localhost",user="root",database="woolyweb",password="abcd")
+        obj222=pymysql.connect(host="localhost",user="root",database="woolyweb",password="2theeran7")
         cur222=obj222.cursor()
         cur222.execute("select fid from farmers;")
         fid_list_product_description=list(cur222.fetchall())
@@ -24,7 +24,7 @@ def description_cost():
             return "<h1>PLEASE ENTER A VALID COST</h1><br><h1>THE COST SHOULD ONLY CONTAIN NUMBERS</h1>"
         cur222.execute("Insert into description values"+str(tuple(description_list))+"")
         obj222.commit()
-        obj223=pymysql.connect(host="localhost",user="root",database="woolyweb",password="abcd")
+        obj223=pymysql.connect(host="localhost",user="root",database="woolyweb",password="2theeran7")
         cur223=obj223.cursor()
         cur223.execute("Select fid from farmers order by fid desc limit 1;")
         FARMER=cur223.fetchall()[0][0]
