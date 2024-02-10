@@ -5,17 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fetch Data from Flask</title>
     <link rel="stylesheet" href="{{url_for('static',filename='css/general2.css')}}">
+    <script>
+        alert("YOUR CREDENTIALS ARE CORRECT\nLOGIN SUCCESSFUL");
+    </script>
 </head>
 <body>
-{% with messages = get_flashed_messages() %}
-  {% if messages %}
-    <ul class="flash-messages">
-      {% for message in messages %}
-        <li><h3><b>{{ message }}</b></h3></li>
-      {% endfor %}
-    </ul>
-  {% endif %}
-{% endwith %}
     <div id="data-container">
         <form action="/prices" method="POST">
             <input type="text" name="min-price" placeholder="Minimum Price" id="">
@@ -94,8 +88,6 @@
                 const result = await response.json();
                 console.log('Verification response:', result);
 
-                // You can handle the response from the backend here
-                // You can replace this with your logic
             } catch (error) {
                 console.error('Error:', error);
             }

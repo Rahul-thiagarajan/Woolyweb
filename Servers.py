@@ -1,6 +1,6 @@
 import pymysql
 from en_de import *
-from flask import Flask,render_template,url_for,request,redirect,flash
+from flask import Flask,render_template,url_for,request,redirect
 import json
 from shared import *
 
@@ -36,7 +36,6 @@ def complete_server(a):
             r_server.append(a[i])
         for i in servers:
             if(i[0]==r_server[0] and i[1]==r_server[1]):
-                flash("YOUR CREDENTIALS ARE CORRECT\nLOGIN SUCCESSFUL")
                 return redirect(url_for('server_authentication'),code=307)#"YOUR CREDENTIALS ARE CORRECT\nLOGIN SUCCESSFUL"
             
         return "INVALID LOGIN CREDENTIALS"
