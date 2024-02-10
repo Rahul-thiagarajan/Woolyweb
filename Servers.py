@@ -1,6 +1,6 @@
 import pymysql
 from en_de import *
-from flask import Flask,render_template,url_for,request,redirect,session
+from flask import Flask,render_template,url_for,request,redirect,flash
 import json
 from shared import *
 
@@ -19,7 +19,7 @@ def submit_server():
         return redirect(url_for("complete_server",a=encrypt(json.dumps(dic))),code=307)
     elif(request.method=="GET"):
         return redirect("/servers_login")
-#global var
+
 r_server=[]
 @app.route("/complete_server/<a>",methods=["POST","GET"])
 def complete_server(a):
@@ -35,6 +35,7 @@ def complete_server(a):
             r_server.append(a[i])
         for i in servers:
             if(i[0]==r_server[0] and i[1]==r_server[1]):
+                flash("YOUR CREDENTIALS ARE CORRECT\nLOGIN SUCCESSFUL")
                 return redirect(url_for('server_authentication'),code=307)#"YOUR CREDENTIALS ARE CORRECT\nLOGIN SUCCESSFUL"
             
         return "INVALID LOGIN CREDENTIALS"
