@@ -6,7 +6,7 @@ from en_de import *
 @app.route('/customer_company_login',methods=["POST","GET"])
 def ren_customer():
     return render_template("customer company.html")
-#global var
+
 x_customer=["name","address","city","state","gstin","password"]
 
 @app.route("/submit_customer",methods=["POST","GET"])
@@ -18,7 +18,6 @@ def submit_customer():
         return redirect(url_for("complete_customer",a=encrypt(json.dumps(dic))),code=307)
     elif(request.method=="GET"):
         return redirect('/')
-#global var
 r_customer=[]
 @app.route("/complete_customer/<a>",methods=["POST","GET"])
 def complete_customer(a):
@@ -45,7 +44,7 @@ def complete_customer(a):
                 return "YOUR GSTIN IS ALREADY REGISTERED"
         else:
             return "YOUR GSTIN IS NOT VALID"
-        return redirect('/')#after successful registration
+        return redirect('/')
     elif(request.method=="GET"):
         return redirect('/')
 
