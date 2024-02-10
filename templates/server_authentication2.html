@@ -7,6 +7,15 @@
     <link rel="stylesheet" href="{{url_for('static',filename='css/general2.css')}}">
 </head>
 <body>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class="flash-messages">
+      {% for message in messages %}
+        <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
     <div id="data-container">
         <form action="/prices" method="POST">
             <input type="text" name="min-price" placeholder="Minimum Price" id="">
