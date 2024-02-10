@@ -36,7 +36,7 @@ def complete_farmer(a):
         if(str(a['aadhaar']) in [z[0] for z in cur5.fetchall()]):
             for i in x_farmers:
                 r_farmer.append(a[i])
-            if(r_farmer[6].len()!=10):
+            if(len(r_farmer[6])!=10):
                 return "SUBMISSION UNSUCCESSFUL..!!<br>PLEASE ENTER A VALID PHONE NUMBER"
             if(cur4.fetchone()==None):
                 r_farmer.append(1)        
