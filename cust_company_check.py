@@ -1,9 +1,5 @@
 import pymysql
 from en_de import*
-obj12=pymysql.connect(host="localhost",user="root",password="abcd",database="woolyweb")
-cur12=obj12.cursor()
-cur12.execute("select gstin,password from customer_company;")
-present_users=list(cur12.fetchall())
 from flask import Flask,render_template,url_for,request,redirect,session
 from shared import *
 import json
@@ -32,7 +28,7 @@ def complete_cust_company_check(a):
         obj12=pymysql.connect(host="localhost",user="root",password="abcd",database="woolyweb")
         cur12=obj12.cursor()
         cur12.execute("select gstin,password from customer_company;")
-    
+        present_users=list(cur12.fetchall())
         a=decrypt(a)
         a=json.loads(a)
         for i in x_cust_company_check:
