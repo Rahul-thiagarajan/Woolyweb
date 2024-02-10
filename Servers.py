@@ -5,6 +5,7 @@ import json
 from shared import *
 
 #app=Flask(__name__)
+app.secret_key="aaaabbbbcccc"
 @app.route('/servers_login',methods=["POST","GET"])
 def ren_server():
     return render_template("server.html")
