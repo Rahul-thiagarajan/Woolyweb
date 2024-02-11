@@ -3,12 +3,17 @@ import pymysql
 from shared import *
 @app.route('/farmers_dashboard_home/<value>')
 def farmers_dashboard_home(value):
-    
-    return render_template('personal_details_dashboard.html')
+    global Farmerid
+    Farmerid=value
+    return render_template('personal_details_dashboard.html',value="h")
 
 @app.route('/Personal_details')
 def personal_details():
-     return render_template('personal_details_dashboard.html',value="pd")
+    obj=pymysql.connect(host="localhost",user="root",password="abcd",database="woolyweb")
+    cur=obj.cursor()
+    s="Select * from farmers where fid="+str(Farmerid)+";"
+    cur.execute(s)
+    return render_template('personal_details_dashboard.html',value="pd",farmersData=cur.fetchall()[0])
 
 # @app.route('/help')
 # def help():
