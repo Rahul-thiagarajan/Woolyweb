@@ -13,7 +13,7 @@
         <a href="{{ url_for('personal_details') }}"><b>Personal Details</b></a>
         <a href="#"><b>Orders</b></a>
         <a href="#"><b>Inventory</b></a>
-        <a href="#"><b>Processing</b></a>
+        <a href="{{ url_for('processing_details') }}"><b>Processing</b></a>
         <a href="#"><b>Dashboard</b></a>
         <a href="#"><b>Help</b></a>
         <img src="../static/images/logo2.png" class="logo">
@@ -29,12 +29,13 @@
             {% endfor %}
             </ul>
         {%elif value=="pn":%}
-            <form action="{{ url_for('processing_details') }}">
+            <form action="{{ url_for('processing_details_change') }}" method="POST">
+                You have not opted for any processing services<br>
                 Would you like to enable preocessing services:
                 <button type="submit" name="requesting_processing" value="y">YES</button> 
             </form>
         {%elif value=="py":%}
-        <form action="{{ url_for('processing_details') }}">
+        <form action="{{ url_for('processing_details_change') }}" method="POST">
             Would you like to disable preocessing services:
             <button type="submit" name="cancel_processing" value="N">YES</button> 
         {% endif %}
