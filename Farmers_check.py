@@ -31,7 +31,8 @@ def complete_farmer_check(a):
             r_farmer_check.append(a[i])
         for i in farmers_list:
             if(str(i[0])==r_farmer_check[0] and i[1]==r_farmer_check[1]):
-                return "YOUR CREDENTIALS ARE CORRECT\nLOGIN SUCCESSFUL"        
+                x=r_farmer_check[0]
+                return redirect(url_for("farmers_dashboard_home",id=x))     
         return "INVALID LOGIN CREDENTIALS"
     elif(request.method=="GET"):
         return redirect('/farmer_check')
