@@ -24,7 +24,7 @@ r_generalcust_check=[]
 def complete_generalcust_check(a):
     if(request.method=="POST"):
         r_generalcust_check.clear()
-        obj11=pymysql.connect(host="localhost",user="root",password="abcd",database="woolyweb")
+        obj11=pymysql.connect(host="localhost",user="root",password="2theeran7",database="woolyweb")
         cur11=obj11.cursor()
         cur11.execute("select username,password from general_customer;")
         farmers_list=list(cur11.fetchall())

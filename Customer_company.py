@@ -24,9 +24,9 @@ r_customer=[]
 def complete_customer(a):
     if(request.method=="POST"):
         r_customer.clear()
-        obj2=pymysql.connect(host="localhost",user="root",password="abcd",database="woolyweb")
+        obj2=pymysql.connect(host="localhost",user="root",password="2theeran7",database="woolyweb")
         cur2=obj2.cursor()
-        obje=pymysql.connect(host="localhost",user="root",password="abcd",database="cust_company")
+        obje=pymysql.connect(host="localhost",user="root",password="2theeran7",database="cust_company")
         cure=obje.cursor()
         cur=obj2.cursor()
         cur.execute("select gstin from customer_company;")

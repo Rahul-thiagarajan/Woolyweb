@@ -1,6 +1,6 @@
 import pymysql
 from en_de import*
-obj12=pymysql.connect(host="localhost",user="root",password="abcd",database="woolyweb")
+obj12=pymysql.connect(host="localhost",user="root",password="2theeran7",database="woolyweb")
 cur12=obj12.cursor()
 cur12.execute("select gstin,password from customer_company;")
 present_users=list(cur12.fetchall())
@@ -29,7 +29,7 @@ def complete_cust_company_check(a):
 
     if (request.method=="POST"):
         r_cust_company_check.clear()
-        obj12=pymysql.connect(host="localhost",user="root",password="abcd",database="woolyweb")
+        obj12=pymysql.connect(host="localhost",user="root",password="2theeran7",database="woolyweb")
         cur12=obj12.cursor()
         cur12.execute("select gstin,password from customer_company;")
     

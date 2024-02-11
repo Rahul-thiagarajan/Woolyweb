@@ -13,7 +13,7 @@ def marketplace():
 @app.route('/get_data_market')
 def get_data_market():
     farmers_marketplace.clear()
-    obj24 = pymysql.connect(host="localhost", user="root", password="abcd", database="woolyweb")
+    obj24 = pymysql.connect(host="localhost", user="root", password="2theeran7", database="woolyweb")
     cur24 = obj24.cursor()
     cur25 = obj24.cursor()
     cur24.execute("select link from farmers, photos where farmers.fid = photos.fid and farmers.verification = 'y';")

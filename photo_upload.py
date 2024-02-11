@@ -63,7 +63,7 @@ def to_drive(f_path):
                         'type': 'anyone',
                         }
                     ).execute()
-            direct_link = f'https://drive.google.com/uc?id={file_id}'
+            direct_link = f'https://drive.google.com/thumbnail?id={file_id}&sz=w1000'
             temp_photo_upload=f_path
             return redirect(url_for('link_upload',link=encrypt(direct_link)),code=307)
         except Exception as e:
@@ -76,9 +76,9 @@ def link_upload(link):
     if(request.method=="POST"):
         link=decrypt(link)
         os.remove(temp_photo_upload)
-        conn21=pymysql.connect(host="localhost",user="root",password="abcd",database="woolyweb")
+        conn21=pymysql.connect(host="localhost",user="root",password="2theeran7",database="woolyweb")
         cur21=conn21.cursor()
-        conn201=pymysql.connect(host="localhost",user="root",password="abcd",database="woolyweb")
+        conn201=pymysql.connect(host="localhost",user="root",password="2theeran7",database="woolyweb")
         cur201=conn201.cursor()
         cur201.execute("select fid from farmers;")
         lst=list(cur201.fetchall())

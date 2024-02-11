@@ -24,7 +24,7 @@ r_server=[]
 @app.route("/complete_server/<a>",methods=["POST","GET"])
 def complete_server(a):
     if(request.method=="POST"):
-        obj8=pymysql.connect(host="localhost",user="root",password="abcd",database="servers")
+        obj8=pymysql.connect(host="localhost",user="root",password="2theeran7",database="servers")
         cur8=obj8.cursor()
         cur8.execute("select * from servers_list;")
         servers=list(cur8.fetchall())

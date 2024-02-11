@@ -1,0 +1,35 @@
+
+#check{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  position:fixed;
+  height:100%;
+  width:100%;
+  background-color:
+  white;
+  /*text-align:center;*/
+  z-index:100;
+
+ 
+
+
+
+}
+#check div{
+  text-align:center;
+}
+#check div img{
+  height:75px;
+  animation: rot 1s;
+  animation-iteration-count: infinite ;
+}
+
+@keyframes rot{
+  0% {
+    transform: rotate(0);
+  }
+  100%{
+    transform: rotate(360deg);
+
+  }
+}

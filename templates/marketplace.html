@@ -3,17 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{url_for('static',filename='css/stylesMarket.css')}}">
+    <link href="{{url_for('static',filename='css/loader.css')}}" rel="stylesheet">
+    
+   <link
+      rel="stylesheet"
+      href="{{url_for('static',filename='css/navBar.css')}}"
+    />
     <title>WoolyWeb</title>
 </head>
 <body>
-  <form action="/logout" method="post">
-    <input type="submit" value="logout">
-  </form>
+  <div id="check">
+  </div>
+  <header>
+    <div class="container">
+      <img
+        class="navbar-logo"
+        src="{{url_for('static',filename='images/logo2.png')}}"
+        alt="WoolyWeb"
+      />
+      <div class="navbar-menu">
+        <a href="/"><div>Home</div></a>
+        <a href="/education"><div>Education</div></a>
+        <a href="https://www.bis.gov.in/"><div>Grading</div></a>
+        <a href="https://woolboard.nic.in/rwp_latest.htm"
+          ><div>Pricing</div></a
+        >
+      </div>
+      <div class="login-container">
+        <form class="flogout" action="/logout" method="post">
+          <button class="flogout" type="submit" class="logout">Logout</button>
+        </form>
+      </div>
+      <div class="menu"><i class="fa fa-bars"></i></div>
+    </div>
+  </header>
+  
+    
+    <script src="{{url_for('static',filename='loader.js')}}"></script>
+
     <main>
       <section class="product-grid">
       </section>
@@ -51,11 +82,12 @@ function displayData(data) {
           <div class="product-description">
             <p class="product-name">${item.description}</p>
             <p class="product-price">$${parseFloat(item.price).toFixed(2)}</p>
-           
+           <div class="enclose-button-cart">
             <button class="add-to-cart" id="add-to-cart" type='submit'>Buy</button>
-            </form>
+            <div>
             
           </div>
+        </form>
         </div>
         `;
         
@@ -96,6 +128,9 @@ window.addEventListener('load', fetchData);
 
 
     </script>
+     
+
+    
   
 </body>
 </html>
