@@ -13,7 +13,8 @@ def personal_details():
     cur=obj.cursor()
     s="Select * from farmers where fid="+str(Farmerid)+";"
     cur.execute(s)
-    return render_template('personal_details_dashboard.html',value="pd",farmersData=cur.fetchall()[0])
+    farmersfield=["ID","NAME","AGE","ADDRESS","CITY","STATE","PHONE NUMBER","AADHAR NUMBER","TYPE OF SHEEP","NO OF SHEEP","INVENTORY ACCESS","VERFICATION","PROCESSING ACCESS","GENDER"]
+    return render_template('personal_details_dashboard.html',value="pd",farmersData=cur.fetchall()[0],field=farmersfield)
 
 # @app.route('/help')
 # def help():

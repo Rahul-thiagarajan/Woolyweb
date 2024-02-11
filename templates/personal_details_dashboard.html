@@ -19,7 +19,14 @@
     </div>
     <div class="content">
         {% if value=="pd":%}
-            <h4>Personal details</h4>
+            <ul>
+            {% for i in range(14) %}
+            <div>
+                <li>{{ field[i] }}: {{farmersData[i]}}</li>
+                
+            </div>
+            {% endfor %}
+            </ul>
         {%else:%}
             <h4>welcome</h4>
         {% endif %}
