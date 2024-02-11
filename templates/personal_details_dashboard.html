@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="left-pane">
-        <a href="{{ url_for('farmers_dashboard_home') }}"><b>Home</b></a>
+        <a href="{{ url_for('farmers_dashboard_home',id=Fid) }}"><b>Home</b></a>
         <a href="{{ url_for('personal_details') }}"><b>Personal Details</b></a>
         <a href="#"><b>Orders</b></a>
         <a href="#"><b>Inventory</b></a>
@@ -28,7 +28,7 @@
             {% endfor %}
             </ul>
         {%else:%}
-            <h4>welcome</h4>
+            <h4>Farmer id: {{Fid}}</h4>
         {% endif %}
     </div>
     <!-- <script src="../static/left.js"></script> -->
