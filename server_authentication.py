@@ -4,8 +4,6 @@ from shared import *
 import pymysql
 
 list_min_max=[0,0]
-obj13=pymysql.connect(host="localhost",user="root",password="abcd",database="woolyweb")
-cur13=obj13.cursor()
 #app = Flask(__name__)
 farmers=[]
 @app.route('/server_authentication',methods=["POST","GET"])
@@ -34,6 +32,8 @@ def get_price():
     return "SUCCESSFULLY UPDATED THE PRICES"
 @app.route('/verify', methods=['POST'])
 def verify():
+    obj13=pymysql.connect(host="localhost",user="root",password="abcd",database="woolyweb")
+    cur13=obj13.cursor()
     data = request.get_json()
     print(f"update farmers set verification='y' where fid={int(data['fid'])};")
     cur13.execute(f"update farmers set verification='y' where fid={int(data['fid'])};")

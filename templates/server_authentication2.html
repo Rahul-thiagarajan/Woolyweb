@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fetch Data from Flask</title>
     <link rel="stylesheet" href="{{url_for('static',filename='css/general2.css')}}">
+    <script>
+        alert("YOUR CREDENTIALS ARE CORRECT\nLOGIN SUCCESSFUL");
+    </script>
 </head>
 <body>
     <div id="data-container">
@@ -85,8 +88,6 @@
                 const result = await response.json();
                 console.log('Verification response:', result);
 
-                // You can handle the response from the backend here
-                // You can replace this with your logic
             } catch (error) {
                 console.error('Error:', error);
             }

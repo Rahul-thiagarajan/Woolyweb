@@ -1,10 +1,11 @@
 import pymysql
 from en_de import *
-from flask import Flask,render_template,url_for,request,redirect,session
+from flask import Flask,render_template,url_for,request,redirect
 import json
 from shared import *
 
 #app=Flask(__name__)
+app.secret_key="aaaabbbbcccc"
 @app.route('/servers_login',methods=["POST","GET"])
 def ren_server():
     return render_template("server.html")
@@ -19,7 +20,7 @@ def submit_server():
         return redirect(url_for("complete_server",a=encrypt(json.dumps(dic))),code=307)
     elif(request.method=="GET"):
         return redirect("/servers_login")
-#global var
+
 r_server=[]
 @app.route("/complete_server/<a>",methods=["POST","GET"])
 def complete_server(a):
