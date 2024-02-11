@@ -7,7 +7,7 @@ def home():
     return render_template('personal_details_dashboard.html')
 
 @app.route('/Personal_details')
-def dashboard():
+def personal_details():
      obj7=pymysql.connect(host="localhost",user="root",database="woolyweb",password="abcd")
      cur7=obj7.cursor()
      return render_template('personal_detail_dashboard.html',value="pd")
