@@ -50,7 +50,6 @@ def inventory():
     all_inven=cursorob.fetchall()
     jon= [{"name": d[0], "address": d[1], "city": d[2], "state": d[3], "max_quantity": d[4], "cost_per_day": d[5]} for d in all_inven]
     jon2=json.dumps(jon)
-    
     return render_template('personal_details_dashboard.html',inven=jon2,value="pz",Fid=Farmerid)
 @app.route('/inventory_to_mail',methods=["POST","GET"])
 def inventory_to_mail():
@@ -64,13 +63,16 @@ def inventory_to_mail():
     cursorob2.execute("select name,email from inventory_details where name=%s and address=%s and city=%s and state=%s and max_quantity=%s and cost_per_day=%s",inven_req)
     mail_content2=cursorob2.fetchone()
     print(type(mail_content1[1]),type(mail_content1[2]))
-    yag = yagmail.SMTP('woolywebonline@gmail.com', 'mqiglhdbgnmjneya')
-    yag.send(
-    to=mail_content2[1],
-    subject='Request for Inventory',
-    contents="Hi " +mail_content2[0]+","+"\n"+"A farmer has requested your inventory service,"+"\n\n"+"FARMER NAME: "+mail_content1[0]+"\n"+"NO. SHEEPS OWNED: "+str(mail_content1[1])+"\n"+"CONTACT INFO: "+mail_content1[2]
-)
-    return "<h1 style='text-align:center;'>MESSAGE SENT SUCCESSFULLY</h1>"
+    try:
+        yag = yagmail.SMTP('woolywebonline@gmail.com', 'mqiglhdbgnmjneya')
+        yag.send(
+        to=mail_content2[1],
+        subject='Request for Inventory',
+        contents="Hi " +mail_content2[0]+","+"\n"+"A farmer has requested your inventory service,"+"\n\n"+"FARMER NAME: "+mail_content1[0]+"\n"+"NO. SHEEPS OWNED: "+str(mail_content1[1])+"\n"+"CONTACT INFO: "+mail_content1[2])
+        return "<h1 style='text-align:center;'>MESSAGE SENT SUCCESSFULLY</h1>"
+    except:
+        return "<h1>Rahul change the mail ID to college mail ID<h1>"
+    
 
 
 
