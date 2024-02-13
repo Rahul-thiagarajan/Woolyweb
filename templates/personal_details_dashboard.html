@@ -39,6 +39,10 @@
             Would you like to disable preocessing services:
             <button type="submit" name="cancel_processing" value="N">YES</button>
         {% elif value=="pz" %}
+        <form action="/inventory_access_change" method="post">
+            <div>Do you want to disable inventory access</div>
+            <button type="submit">disable</button>
+            </form>
         <main id="main" style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;row-gap:10px;">
         </main> 
         <script>
@@ -51,6 +55,11 @@
         }
 
         </script>
+        {% elif value=="pz2" %}
+        <form action="/inventory_access_change" method="post">
+            <div>Do you want to enable inventory access</div>
+            <button type="submit">enable</button>
+            </form>
         {% endif %}
     </div>
  

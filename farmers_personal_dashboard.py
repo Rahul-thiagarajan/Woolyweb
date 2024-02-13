@@ -44,14 +44,34 @@ def processing_details_change():
             return render_template('personal_details_dashboard.html',value="pn",Fid=Farmerid)
 @app.route('/inventory',methods=["POST","GET"])
 def inventory():
-    con=pymysql.connect(user="root",host="localhost",password="abcd",database="inventory")
+    con2=pymysql.connect(user="root",host="localhost",password="abcd",database="woolyweb")
+    cursorob2=con2.cursor()
+    cursorob2.execute("select inventory_access from farmers where fid=%s",Farmerid)
+    choice=cursorob2.fetchone()[0]
+    if(choice=='y'):
+        con=pymysql.connect(user="root",host="localhost",password="abcd",database="inventory")
+        cursorob=con.cursor()
+        cursorob.execute("select name,address,city,state,max_quantity,cost_per_day from inventory_details")
+        all_inven=cursorob.fetchall()
+        jon= [{"name": d[0], "address": d[1], "city": d[2], "state": d[3], "max_quantity": d[4], "cost_per_day": d[5]} for d in all_inven]
+        jon2=json.dumps(jon)
+        return render_template('personal_details_dashboard.html',inven=jon2,value="pz",Fid=Farmerid)
+    else:
+        return render_template('personal_details_dashboard.html',value="pz2",Fid=Farmerid)
+@app.route('/inventory_access_change',methods=["POST","GET"])
+def inventory_access_change():
+    con=pymysql.connect(user="root",host="localhost",password="abcd",database="woolyweb")
     cursorob=con.cursor()
-    cursorob.execute("select name,address,city,state,max_quantity,cost_per_day from inventory_details")
-    all_inven=cursorob.fetchall()
-    jon= [{"name": d[0], "address": d[1], "city": d[2], "state": d[3], "max_quantity": d[4], "cost_per_day": d[5]} for d in all_inven]
-    jon2=json.dumps(jon)
-    
-    return render_template('personal_details_dashboard.html',inven=jon2,value="pz",Fid=Farmerid)
+    cursorob.execute("select inventory_access from farmers where fid=%s",Farmerid)
+    status=cursorob.fetchone()[0]
+    if(status=='n'):
+        cursorob.execute("update farmers set inventory_access='y' where fid=%s",Farmerid)
+        con.commit()
+    else:
+        cursorob.execute("update farmers set inventory_access='n' where fid=%s",Farmerid)
+        con.commit()
+    return redirect('/inventory')
+
 @app.route('/inventory_to_mail',methods=["POST","GET"])
 def inventory_to_mail():
     inven_req=[request.form["name"],request.form["address"],request.form["city"],request.form["state"],request.form["max_quantity"],request.form["cost_per_day"]]
