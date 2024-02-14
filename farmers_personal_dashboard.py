@@ -1,5 +1,7 @@
-from flask import Flask, render_template
+from flask import Flask, render_template,request
+import json;
 import pymysql
+import yagmail
 from shared import *
 @app.route('/farmers_dashboard_home/<id>')
 def farmers_dashboard_home(id):
