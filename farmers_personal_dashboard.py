@@ -90,7 +90,7 @@ def inventory_to_mail():
     cursorob2.execute("select name,email from inventory_details where name=%s and address=%s and city=%s and state=%s and max_quantity=%s and cost_per_day=%s",inven_req)
     mail_content2=cursorob2.fetchone()
     print(type(mail_content1[1]),type(mail_content1[2]))
-    yag = yagmail.SMTP('woolywebonline@gmail.com', 'mqiglhdbgnmjneya')
+    yag = yagmail.SMTP('2022it0003@svce.ac.in', 'Rahulsai@2004')
     yag.send(
     to=mail_content2[1],
     subject='Request for Inventory',
