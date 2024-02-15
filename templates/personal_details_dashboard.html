@@ -12,8 +12,8 @@
         <a href="{{ url_for('farmers_dashboard_home',id=Fid) }}"><b>Home</b></a>
         <a href="{{ url_for('personal_details') }}"><b>Personal Details</b></a>
         <a href="#"><b>Orders</b></a>
-        <a href="#"><b>Inventory</b></a>
-        <a href="{{ url_for('processing_details') }}"><b>Processing</b></a>
+        <a href="{{ url_for('processing_details_change') }}"><b>Processing</b></a>
+        <a href="{{url_for('inventory')}}"><b>Inventory</b></a>
         <a href="#"><b>Dashboard</b></a>
         <a href="#"><b>Help</b></a>
         <img src="../static/images/logo2.png" class="logo">
@@ -37,9 +37,33 @@
         {%elif value=="py":%}
         <form action="{{ url_for('processing_details_change') }}" method="POST">
             Would you like to disable preocessing services:
-            <button type="submit" name="cancel_processing" value="N">YES</button> 
+            <button type="submit" name="cancel_processing" value="N">YES</button>
+        {% elif value=="pz" %}
+        <form action="/inventory_access_change" method="post">
+            <div>Do you want to disable inventory access</div>
+            <button type="submit">disable</button>
+            </form>
+        <main id="main" style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;row-gap:10px;">
+        </main> 
+        <script>
+        var variable = JSON.parse('{{inven | safe}}');
+        for(let i in variable)
+        {
+        document.getElementById("main").innerHTML+=`<div><form action='/inventory_to_mail' method="post">
+            <input style="color:black;" type="hidden" id="name" name="name" value="${variable[i].name}"><div>NAME : ${variable[i].name}</div> <br> <input type="hidden" id="address" name="address" value="${variable[i].address}"><div>ADDRESS : ${variable[i].address}</div><br>
+            <input type="hidden" id="city" name="city" value="${variable[i].city}"><div>CITY : ${variable[i].city}</div><br> <input type="hidden" id="state" name="state" value="${variable[i].state}"><div>State : ${variable[i].state}</div><br> <input type="hidden" id="max_quantity" name="max_quantity" value="${variable[i].max_quantity}"><div>MAX Qty : ${variable[i].max_quantity}</div><br> <input type="hidden" id="cost_per_day" name="cost_per_day" value="${variable[i].cost_per_day}"><div>COST PER DAY : Rs.${variable[i].cost_per_day}</div><br><button type=submit>submit</button></form><div>`
+        }
+
+        </script>
+        {% elif value=="pz2" %}
+        <form action="/inventory_access_change" method="post">
+            <div>Do you want to enable inventory access</div>
+            <button type="submit">enable</button>
+            </form>
         {% endif %}
     </div>
+ 
+
     <!-- <script src="../static/left.js"></script> -->
 </body>
 </html>
