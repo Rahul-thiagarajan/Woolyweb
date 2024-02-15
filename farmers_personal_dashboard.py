@@ -17,15 +17,6 @@ def personal_details():
     cur.execute(s)
     farmersfield=["ID","NAME","AGE","ADDRESS","CITY","STATE","PHONE NUMBER","AADHAR NUMBER","TYPE OF SHEEP","NO OF SHEEP","INVENTORY ACCESS","VERFICATION","PROCESSING ACCESS","GENDER"]
     return render_template('personal_details_dashboard.html',value="pd",farmersData=cur.fetchall()[0],field=farmersfield,Fid=Farmerid)
-# @app.route('/Processing_details')
-# def processing_details():
-#     obj=pymysql.connect(host="localhost",user="root",password="abcd",database="woolyweb")
-#     cur=obj.cursor()
-#     s="select processing_access from farmers where fid="+str(Farmerid)+";"
-#     cur.execute(s)
-#     if(cur.fetchall()[0][0].lower()=="n"):
-#         return render_template('personal_details_dashboard.html',value="pn",Fid=Farmerid)
-#     return render_template('personal_details_dashboard.html',value="py",Fid=Farmerid)
 
 @app.route('/Processing_details_change',methods=["POST","GET"])
 def processing_details_change():
