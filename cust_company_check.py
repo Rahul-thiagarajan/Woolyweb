@@ -6,8 +6,9 @@ import json
 #app=Flask(__name__)
 @app.route('/cust_company_check',methods=["POST","GET"])
 def ren_cust_company_check():
+    print("oombu")
     if "customer_company_customer" in session:
-        return redirect('/marketplace',code=307)
+        return redirect(url_for('marketplace',cust_username="bbku"),code=307)
     return render_template("cust_company_check.html")
 x_cust_company_check=["gstin","password"]
 @app.route("/submit_cust_company_check",methods=["POST","GET"])

@@ -29,10 +29,8 @@
             <div class="delivery-date">
               Delivery date: Tuesday, June 21
             </div>
-
             <div class="cart-item-details-grid">
               <img src="" alt="no image" class="product-image">
-
               <div class="cart-item-details">
                 <div class="product-name">
                   Black and Gray Athletic Cotton Socks - 6 Pairs
@@ -40,16 +38,14 @@
                 <div class="product-price">
                   $10.90
                 </div>
+                
+                <div style="display:none;" class="farmer-id">3</div>
+                
                 <div class="product-quantity">
                   <span>
                     Quantity: <span class="quantity-label">2</span>
                   </span>
-                  <span class="update-quantity-link link-primary">
-                    Update
-                  </span>
-                  <span class="delete-quantity-link link-primary">
-                    Delete
-                  </span>
+                  
                 </div>
               </div>
 
@@ -131,10 +127,12 @@
             <div>Order total:</div>
             <div class="payment-summary-money order-total">$52.51</div>
           </div>
+<form action="{{url_for('checkout')}}">
+  <input type="hidden" id="farmer2" value="" name="farmer2">
 
           <button class="place-order-button button-primary">
             Place your order
-          </button>
+          </button></form>
         </div>
       </div>
     </div>
@@ -142,6 +140,6 @@
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
    <script defer src="{{url_for('static',filename='checkout.js')}}"></script>
 
-
+ 
   </body>
 </html>

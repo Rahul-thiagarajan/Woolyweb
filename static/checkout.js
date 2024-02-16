@@ -1,8 +1,15 @@
-
+console.log(localStorage.farmerId);
+console.log(localStorage.productName);
 $(".product-image").attr("src", localStorage.getItem('productImage'));
 $(".product-name").html(localStorage.productName);
 $(".product-price").html(localStorage.productPrice);
 $(".total").html(localStorage.productPrice);
+$(".farmer-id").html(localStorage.farmerId);
+var farmerId = $(".farmer-id").text();
+$("#farmer2").val(farmerId);
+$(".farmer2").attr("value", localStorage.getItem('farmerId'));
+
+
 
 $(".delivery-option-input").on("click", function() {
     if (this.id == 1) {

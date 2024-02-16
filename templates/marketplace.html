@@ -43,7 +43,7 @@ function displayData(data) {
     data.forEach((item, index) => {
         const productHTML = `
         <div class="product-preview">
-          <form class="fadd-to-cart" method='post' action='/checkout'>
+          <form class="fadd-to-cart" method='post' action='/checkout2'>
           <div class="product-image-row">
             <img class="product-image" src="${item.link}" alt="image">
           </div>
@@ -51,13 +51,14 @@ function displayData(data) {
           <div class="product-description">
             <p class="product-name">${item.description}</p>
             <p class="product-price">$${parseFloat(item.price).toFixed(2)}</p>
-           
+            <p class="farmer-id">${item.fid}</p>
             <button class="add-to-cart" id="add-to-cart" type='submit'>Buy</button>
             </form>
             
           </div>
         </div>
         `;
+        console.log(item.fid);
         
         container.innerHTML += productHTML;});
       
@@ -76,7 +77,8 @@ forms.forEach(function(form) {
   localStorage.setItem("productName",event.target.querySelector(".product-name").innerHTML);//i used event target to refer to the specific item that was clicked
   localStorage.setItem("productPrice", event.target.querySelector(".product-price").innerHTML);
   localStorage.setItem("productImage",event.target.querySelector(".product-image-row").querySelector(".product-image").src);
-
+  localStorage.setItem("farmerId", event.target.parentElement.querySelector(".farmer-id").innerHTML);
+   
   };
 
   

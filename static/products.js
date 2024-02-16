@@ -1,10 +1,14 @@
 $(".add-to-cart").on("click", function() {
     localStorage.clear();
+    //localStorage.setItem("farmerId", this.parentElement.querySelector(".farmer-id").innerHTML);
     localStorage.setItem("productName", this.parentElement.querySelector(".product-name").innerHTML);
     localStorage.setItem("productPrice", this.parentElement.querySelector(".product-price").innerHTML);
+    //localStorage.setItem("farmerId", this.parentElement.querySelector(".farmer-id").innerHTML);
     localStorage.setItem("productImage", this.parentElement.parentElement.querySelector(".product-image-row").querySelector(".product-image").src);
-
+    
     window.location.href = "templates\checkout.html";
+    
+
 });
 
 // Function to fetch data from the Flask endpoint
@@ -35,10 +39,12 @@ function displayData(data) {
           <div class="product-description">
             <p class="product-name">${item.description}</p>
             <p class="product-price">$${parseFloat(item.price).toFixed(2)}</p>
+            <p  class="farmer-id">${item.fid}</p>
             <button class="add-to-cart">Buy</button>
           </div>
         </div>
         `;
+
         
         container.innerHTML += productHTML;
     });
