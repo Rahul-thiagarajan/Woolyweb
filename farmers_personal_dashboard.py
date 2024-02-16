@@ -22,12 +22,18 @@ def personal_details():
 def processing_details_change():
     obj=pymysql.connect(host="localhost",user="root",password="abcd",database="woolyweb")
     cur=obj.cursor()
+    obj2=pymysql.connect(host="localhost",user="root",database="processing_industries",password="abcd")
+    cur2=obj2.cursor()
+    cur2.execute("Select name,address,city,state,process,cost from processing_details")
+    list_of_processing_industries=cur2.fetchall()
+    jon= [{"name": d[0], "address": d[1], "city": d[2], "state": d[3], "process": d[4], "cost_per_kg": d[5]} for d in list_of_processing_industries]
+    jon2=json.dumps(jon)
     if request.method=="POST":
         if('requesting_processing' in request.form and request.form['requesting_processing'] == 'y'):
             a="Update farmers set processing_access='y' where fid="+str(Farmerid)+";"
             cur.execute(a)
             obj.commit()
-            return render_template('personal_details_dashboard.html',value="py",Fid=Farmerid)
+            return render_template('personal_details_dashboard.html',value="py",prcng_indst=jon2,Fid=Farmerid)
         else:
             a="Update farmers set processing_access='n' where fid="+str(Farmerid)+";"
             cur.execute(a)
@@ -38,7 +44,7 @@ def processing_details_change():
         cur.execute(s)
         if(cur.fetchall()[0][0].lower()=="n"):
             return render_template('personal_details_dashboard.html',value="pn",Fid=Farmerid)
-        return render_template('personal_details_dashboard.html',value="py",Fid=Farmerid)
+        return render_template('personal_details_dashboard.html',value="py",prcng_indst=jon2,Fid=Farmerid)
 @app.route('/inventory',methods=["POST","GET"])
 def inventory():
     con2=pymysql.connect(user="root",host="localhost",password="abcd",database="woolyweb")
