@@ -1,5 +1,5 @@
 from flask import Flask, render_template,request
-import json;
+import json
 import pymysql
 import yagmail
 from shared import *
@@ -95,6 +95,17 @@ def inventory_to_mail():
 )
     return "<h1 style='text-align:center;'>MESSAGE SENT SUCCESSFULLY</h1>"
 
+@app.route("/orders",methods=["POST","GET"])
+def orders():
+    con1=pymysql.connect(user="root",host="localhost",password="abcd",database="woolyweb")
+    cur1=con1.cursor()
+    cur1.execute("select orderid,custid,destaddress from orders where fid="+str(Farmerid)+";")
+    list_of_orders=cur1.fetchall()
+    if(len(list_of_orders)==0):
+        return render_template("personal_details_dashboard.html",value='on',Fid=Farmerid)
+    jon= [{"Order_id": i[0], "Customer_id": i[1], "Address": i[2]} for i in list_of_orders]
+    jon2=json.dumps(jon)
+    return render_template("personal_details_dashboard.html",value='o',orders=jon2,Fid=Farmerid)
 # @app.route('/help')
 # def help():
 #     return render_template('help.html')

@@ -36,12 +36,24 @@ def get_data_market():
 def checkout():
     print("Ulle vaaa")
     if(request.method=="POST"):
-        
-        return render_template('checkout.html')
+        fid=int(request.form["farmer2"])
+        stri='Select cust_address,cust_city,cust_state from general_customer where username="'+str(custUser)+'";'
+        obj1=pymysql.connect(host="localhost",user="root",database="woolyweb",password="abcd")
+        obj2=pymysql.connect(host="localhost",user="root",database="woolyweb",password="abcd")
+        cursor=obj1.cursor()
+        cursor.execute(stri)
+        temp=cursor.fetchall()
+        cus_add=str(temp[0][0])
+        cus_city=str(temp[0][1])
+        cus_state=str(temp[0][2])
+        cursor2=obj2.cursor()
+        dest_address=cus_add+","+cus_city+","+cus_state
+        str2='Insert into orders(fid,custid,destaddress) values('+str(fid)+',"'+str(custUser)+'","'+dest_address+'");'
+        cursor2.execute(str2)
+        obj2.commit()
+        return '<body><h1>Order placed successfully</h1><form action="/"><input type="submit" value="Go to Home"></form><body>'
     elif(request.method=="GET"):
-        fid=request.form["farmer2"]
-        print(fid)
-        return "Order placed successfully"
+        return redirect('/')
     
     
 @app.route('/checkout2',methods=["POST","GET"])

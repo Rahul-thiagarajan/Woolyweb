@@ -127,12 +127,11 @@
             <div>Order total:</div>
             <div class="payment-summary-money order-total">$52.51</div>
           </div>
-<form action="{{url_for('checkout')}}">
-  <input type="hidden" id="farmer2" value="" name="farmer2">
+<form action="{{url_for('checkout')}}" method="POST">
+  <input type="text" style="display:none" id="farmer2" value="" name="farmer2">
 
-          <button class="place-order-button button-primary">
-            Place your order
-          </button></form>
+          <input type="submit" value="Place your order">
+        </form>
         </div>
       </div>
     </div>
