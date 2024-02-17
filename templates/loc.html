@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="fm">
+        
+        
+    </div>
+
+    <script>
+        function a(){
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            let latitude = position.coords.latitude;
+            let longitude = position.coords.longitude;
+            console.log("Latitude: " + latitude + ", Longitude: " + longitude);
+            document.getElementById('fm').innerHTML=`<form action="/toprint" method="post">
+                <input type="hidden" name ="lat" id="lat" value="${parseFloat(latitude).toFixed(6)}">
+                <input type="hidden" name="long" id="long" value="${parseFloat(longitude).toFixed(6)}">
+            </form>`;
+            
+            let formData = new FormData(document.querySelector('form')); // Creates a FormData object from the form
+
+            fetch('/toprint', { // Replace '/your-endpoint' with your actual endpoint
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error('Error:', error));
+        });
+    } else {
+        console.log("Geolocation is not supported by this browser.");
+    }
+}
+
+var intervalID=setInterval(a,2000);
+
+/*function a(){
+    if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(function(position) {
+    let latitude = position.coords.latitude;
+    let longitude = position.coords.longitude;
+    console.log("Latitude: " + latitude + ", Longitude: " + longitude);
+    /*document.getElementById('lat').value=latitude;
+    document.getElementById('long').value=longitude;
+    document.getElementById('fm').innerHTML=`<form action="/toprint" method="post">
+            <input type="hidden" name ="lat" id="lat" value="${latitude}">
+            <input type="hidden" name="long" id="long" value="${longitude}">
+                </form>`;
+    document.querySelector('form').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevents the default form submission action
+
+    let formData = new FormData(event.target); // Creates a FormData object from the form
+
+    fetch('/toprint', { // Replace '/your-endpoint' with your actual endpoint
+    method: 'POST',
+    body: formData
+    })
+.then(response => response.json())
+.then(data => console.log(data))
+.catch(error => console.error('Error:', error));
+});
+    
+  });
+} else {
+  console.log("Geolocation is not supported by this browser.");
+}
+    
+
+
+    
+
+
+}
+var intervalID=setInterval(a,10000);*/
+</script>
+</body>
+</html>

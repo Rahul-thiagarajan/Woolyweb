@@ -8,12 +8,35 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{url_for('static',filename='css/stylesMarket.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/loader.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/navBar.css')}}">
     <title>WoolyWeb</title>
 </head>
 <body>
-  <form action="/logout" method="post">
+
+  <div id="check"></div>
+  <header>
+    
+    <div class="container">
+        <img class="navbar-logo" src="{{url_for('static',filename='images/logo2.png')}}" alt="WoolyWeb">
+        <div class="navbar-menu">
+            <a href="/"><div>Home</div></a>
+            <a href="/education"><div>Education</div></a>
+            <a href="https://www.bis.gov.in/"><div>Grading</div></a>
+            <a href="https://woolboard.nic.in/rwp_latest.htm"><div>Pricing</div></a>
+        </div>
+        <div class="login-container">
+          <form class="flogout" action="/" method="post">
+            <button type='submit' class="flogout">LogOut</button></form>
+        </div>
+        <div class="menu"><i class="fa fa-bars"></i></div>
+    </div>
+    
+</header>
+<script src="{{url_for('static',filename='loader.js')}}"></script>
+  <!-- <form action="/logout" method="post">
     <input type="submit" value="logout">
-  </form>
+  </form> -->
     <main>
       <section class="product-grid">
       </section>

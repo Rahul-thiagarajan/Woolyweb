@@ -16,6 +16,7 @@
 
     <link rel="stylesheet" href="{{url_for('static',filename='css/navBar.css')}}">
     <link rel="stylesheet" href="{{url_for('static',filename='css/news.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/loader.css')}}">
     {% if url=='/1' %}
     <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
     {%endif%}
@@ -24,7 +25,8 @@
     <title>News</title>
 </head>
 <body>
-
+<div id="check"></div>
+<script src="{{url_for('static',filename='loader.js')}}"></script>
     <header>
         <div class="container">
             <img class="navbar-logo" src="{{url_for('static',filename='images/logo2.png')}}" alt="WoolyWeb">
@@ -70,7 +72,7 @@
 
         <div class="container">
           {% if url != '/re2' and entries!='/education' %} {% for entry in
-            entries[:15] %}
+            entries[1:7] %}
           <div>
             <h3>
               <a
@@ -82,6 +84,12 @@
             <br />
           </div>
           {% endfor %} {%elif entries=='/education'%}
+          <div>
+            <form action="/woolybot" method="post">
+              <button type="submit">WOOLYBOT</button>
+              
+            </form>
+          </div>
             <div>
                 <h3>
                   <a

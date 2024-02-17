@@ -1,8 +1,8 @@
-from flask import Flask, jsonify, render_template,session
+from flask import Flask, jsonify, render_template,session,request
 import pymysql
 from shared import *
 import pymysql
-
+import yagmail
 list_min_max=[0,0]
 #app = Flask(__name__)
 farmers=[]
@@ -40,6 +40,48 @@ def verify():
     obj13.commit()
     print("Done")
     return jsonify({"message": "Response recorded successfully"})
+@app.route('/send_transport_mail',methods=["POST","GET"])
+def send_tranport():
+    return render_template('send_transport_mail.html')
+@app.route('/to_driver',methods=["POST","GET"])
+def to_driver():
+    return render_template('loc.html')
 
+@app.route('/toprint',methods=["POST","GET"])
+def toprint():
+    tid=1
+    print(tid)
+    print(request.form['lat'])
+    print(request.form['long'])
+    con=pymysql.connect(user="root",host="localhost",password="abcd",database="transport")
+    curob=con.cursor()
+    curob.execute("update transport_details set lat=%s,lon=%s where t_id=%s",(request.form['lat'],request.form['long'],tid))
+    con.commit()
+    return redirect('/to_driver')
+    
+@app.route('/to_map',methods=["POST","GET"])
+def to_map():
+    tid=request.form['tid']
+    con=pymysql.connect(user="root",host="localhost",password="abcd",database="transport")
+    curob=con.cursor()
+    curob.execute("select lat,lon from transport_details where t_id=%s",tid)
+    val=curob.fetchone()
+    float_tuple = tuple(float(v) for v in val)
+    lat=float_tuple[0]
+    lon=float_tuple[1]
+    print(lat,lon)
+    return render_template('jsmaps.html',lat=lat,lon=lon);
+@app.route('/to_mail',methods=["POST","GET"])
+def to_mail():
+    city=request.form['tcity']
+    mail=request.form['tmail']
+    link="http://127.0.0.1:5000/to_driver"
+    yag = yagmail.SMTP('2022it0003@svce.ac.in', 'Rahulsai@2004')
+    yag.send(
+    to="2022it0121@svce.ac.in",
+    subject='Request for Inventory',
+    contents="Hi " +city+","+"\n"+"A farmer has requested your inventory service,"+"\n\n"+"FARMER NAME: "+link+"\n"+"NO. SHEEPS OWNED: "+city+"\n"+"CONTACT INFO: "+city
+)
+    return "<h1>mail has been sent</h1>"
 '''if __name__ == '__main__':
     app.run(debug=True)'''

@@ -1,5 +1,6 @@
 import pymysql
 import json
+from woolbot import *
 from farmers_personal_dashboard import *
 from datetime import timedelta
 from flask import Flask, render_template,request,url_for,redirect,session
@@ -79,5 +80,23 @@ def education():
 def logout():
     session.clear()
     return redirect('/')
+@app.route('/woolybot',methods=["POST","GET"])
+def home():
+    chat_messages=[]
+    return render_template('page1.html', messages=chat_messages)
+
+@app.route('/send_message', methods=['POST'])
+def send_message():
+    user_message = request.form['user_message']
+    
+    # Add the user's message to the chat_messages list
+    chat_messages.append(('User', user_message))
+    
+    # Here, you can add your chatbot's logic to generate a response
+    # For now, we'll just add a simple response from the chatbot
+    chatbot_response = solu([user_message])
+    chat_messages.append(('bot', chatbot_response))
+    
+    return render_template('page1.html', messages=chat_messages)
 if __name__ == '__main__':
     app.run(debug=True)

@@ -187,7 +187,7 @@ body {
   }
   
   .total-row {
-    color: rgb(177, 39, 4);
+    color: #c07524;;
     font-weight: 700;
     font-size: 18px;
   
@@ -203,18 +203,20 @@ body {
   
     margin-top: 11px;
     margin-bottom: 15px;
-    background: #52616B;
+    background-color: #352F44;
     color: #F0F5F9;
     border: 0;
   }
   
   .order-summary {
-    background: #C9D6DF;
+    background: #F5F5F5;
+    box-shadow: 0 0 10px 2px rgba(0,0,0,0.2);
     border-radius: 5px;
   }
 
   .payment-summary {
-    background: #C9D6DF;
+    background: #F5F5F5;
+    box-shadow: 0 0 10px 2px rgba(0,0,0,0.2);
     border-radius: 5px; 
   }
 
@@ -223,7 +225,50 @@ body {
   }
 
   .place-order-button:hover {
-    background: #F0F5F9;
+    background-color: transparent;
+    border-color:#c07524;;
     color: #52616B;
-    border: 0;
+    border-style:solid;
+    color:#352F44;
+  }
+  .left,.right,.top,.bottom{
+    background-color: #352F44;
+  }
+  .left{
+    position:fixed;
+    top:0;
+    bottom:0;
+    left:0px;
+    right:95%;
+    
+  }
+  .right
+  {position:fixed;
+    top:0;
+    bottom:0;
+    left:95%;
+    right:0%;
+    
+  
+
+
+  }
+  .top{position:absolute;
+    top:0;
+    bottom:95%;
+    left:0px;
+    right:0;
+    
+  
+
+  }
+  .bottom
+  {position:fixed;
+    top:95%;
+    bottom:0;
+    left:0px;
+    right:0;
+    
+  
+
   }

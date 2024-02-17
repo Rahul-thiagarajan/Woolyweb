@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Page1 - Minty Milky Antelope</title>
+    <meta property="og:title" content="Page1 - Minty Milky Antelope" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta property="twitter:card" content="summary_large_image" />
+
+    <style data-tag="reset-style-sheet">
+      html {
+        line-height: 1.15;
+      }
+      body {
+        margin: 0;
+      }
+      * {
+        box-sizing: border-box;
+        border-width: 0;
+        border-style: solid;
+      }
+      p,
+      li,
+      ul,
+      pre,
+      div,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      figure,
+      blockquote,
+      figcaption {
+        margin: 0;
+        padding: 0;
+      }
+      button {
+        background-color: transparent;
+      }
+      button,
+      input,
+      optgroup,
+      select,
+      textarea {
+        font-family: inherit;
+        font-size: 100%;
+        line-height: 1.15;
+        margin: 0;
+      }
+      button,
+      select {
+        text-transform: none;
+      }
+      button,
+      [type="button"],
+      [type="reset"],
+      [type="submit"] {
+        -webkit-appearance: button;
+      }
+      button::-moz-focus-inner,
+      [type="button"]::-moz-focus-inner,
+      [type="reset"]::-moz-focus-inner,
+      [type="submit"]::-moz-focus-inner {
+        border-style: none;
+        padding: 0;
+      }
+      button:-moz-focus,
+      [type="button"]:-moz-focus,
+      [type="reset"]:-moz-focus,
+      [type="submit"]:-moz-focus {
+        outline: 1px dotted ButtonText;
+      }
+      a {
+        color: inherit;
+        text-decoration: inherit;
+      }
+      input {
+        padding: 2px 4px;
+      }
+      img {
+        display: block;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
+    <style data-tag="default-style-sheet">
+      html {
+        font-family: Inter;
+        font-size: 16px;
+      }
+
+      body {
+        font-weight: 400;
+        font-style: normal;
+        text-decoration: none;
+        text-transform: none;
+        letter-spacing: normal;
+        line-height: 1.15;
+        color: var(--dl-color-gray-black);
+        background-color: var(--dl-color-gray-white);
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
+      data-tag="font"
+    />
+  </head>
+  <body>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}" />
+    <div>
+      <link
+        href="{{url_for('static',filename='css/page1.css')}}"
+        rel="stylesheet"
+      />
+
+      <div class="page1-container">
+        <header data-role="Accordion" class="page1-header" style="z-index: 100">
+          <img
+            style="height: 50%"
+            alt="logo"
+            src="{{url_for('static',filename='images/logo2.png')}}"
+            class="page1-image"
+          />
+          <div class="page1-separator"></div>
+          <h1 class="page1-text">WoolyBot</h1>
+          <nav class="page1-nav"></nav>
+          <div data-role="AccordionHeader" class="page1-accordion-header"></div>
+          <div data-role="AccordionContent" class="page1-accordion-content">
+            <div class="page1-nav1">
+              <nav
+                class="navigation-links3-nav navigation-links3-root-class-name20"
+              >
+                <span class="navigation-links3-text"><span>About</span></span>
+                <span class="navigation-links3-text1">
+                  <span>Features</span>
+                </span>
+                <span class="navigation-links3-text2">
+                  <span>Pricing</span>
+                </span>
+                <span class="navigation-links3-text3"><span>Team</span></span>
+                <span class="navigation-links3-text4"><span>Blog</span></span>
+              </nav>
+            </div>
+          </div>
+        </header>
+        <div style="height: 100%; color: rgb(113, 40, 0)" class="page1-hero">
+          <div>
+            {% for n in messages %}
+            <div>{{n}}</div>
+
+            <br />
+            {%endfor%}
+          </div>
+        </div>
+
+        <footer class="page1-footer" style="z-index: 100">
+          <form
+            action="/send_message"
+            method="post"
+            enctype="multipart/form-data"
+          >
+            <div style="width: 100%">
+              <textarea
+                style="float: left"
+                name="user_message"
+                placeholder="Enter Query"
+                class="page1-textarea textarea"
+              ></textarea>
+              <button
+                style="float: right; padding-top: 20px"
+                type="submit"
+                class="page1-button button"
+              >
+                <svg viewBox="0 0 1024.5851428571427 1024" class="page1-icon">
+                  <path
+                    d="M1008 6.286c12 8.571 17.714 22.286 15.429 36.571l-146.286 877.714c-1.714 10.857-8.571 20-18.286 25.714-5.143 2.857-11.429 4.571-17.714 4.571-4.571 0-9.143-1.143-13.714-2.857l-301.143-122.857-170.286 186.857c-6.857 8-16.571 12-26.857 12-4.571 0-9.143-0.571-13.143-2.286-14.286-5.714-23.429-19.429-23.429-34.286v-258.286l-269.714-110.286c-13.143-5.143-21.714-17.143-22.857-31.429-1.143-13.714 6.286-26.857 18.286-33.714l950.857-548.571c12-7.429 27.429-6.857 38.857 1.143zM812.571 862.857l126.286-756-819.429 472.571 192 78.286 493.143-365.143-273.143 455.429z"
+                  ></path>
+                </svg>
+              </button>
+            </div>
+          </form>
+        </footer>
+      </div>
+    </div>
+  </body>
+</html>
